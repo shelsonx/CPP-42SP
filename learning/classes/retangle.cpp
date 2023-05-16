@@ -1,26 +1,25 @@
 #include <iostream>
 
 class Rectangle {
-    int x, y;
+    int width, height;
     public:
-        void set_values(int, int);
+        Rectangle(int, int);
         double area(void);
 };
 
-void Rectangle::set_values(int a, int b)
+Rectangle::Rectangle (int x, int y)
 {
-    x = a;
-    y = b;
+    width = x;
+    height = y;
 }
 
-double Rectangle::area(void)
+double Rectangle::area()
 {
-    return (x * y);
+    return (width * height);
 }
 
 int main (void)
 {
-    Rectangle rect;
     int x, y;
 
     std::cout << "Enter x: ";
@@ -28,6 +27,6 @@ int main (void)
 
     std::cout << "Enter y: ";
     std::cin >> y;
-    rect.set_values(x, y);
+    Rectangle rect(x, y);
     std::cout << rect.area() << std::endl;
 }
