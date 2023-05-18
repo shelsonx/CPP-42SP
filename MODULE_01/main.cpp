@@ -17,23 +17,31 @@ Contact create_new_contact()
    return contact;
 }
 
-void dispatcher(PhoneBook *pb, std::string input)
+void dispatcher(PhoneBook *pb, int option)
 {
-   if (input.compare("1") == 0)
-      pb->add(create_new_contact());
-   else if (input.compare("2") == 0)
-      std::cout << "Missing implement!" << std::endl;
-   else if (input.compare("3") == 0)
-      std::cout << "Missing implement!" << std::endl;
-   if (input.compare("4") != 0)
+   switch (option)
+   {
+      case 1:
+         pb->add(create_new_contact());
+         break;
+      case 2:
+         std::cout << "Missing implement!" << std::endl;
+         break;
+      case 3:
+         std::cout << "Missing implement!" << std::endl;
+         break;
+      default:
+         break;
+   }
+   if (option != 4)
       pb->display_contacts();
 }
 
 void input(PhoneBook *pb)
 {
-   std::string sentry;
-   sentry = "";
-   while (sentry.compare("4"))
+   char input[1];
+   int option = -1;
+   while (option != 4)
    {
       std::cout << "Select option: " << std::endl;
       std::cout << "1- Add new contact" << std::endl;
@@ -41,8 +49,9 @@ void input(PhoneBook *pb)
       std::cout << "3- Display all contacts" << std::endl;
       std::cout << "4- Exit" << std::endl;
       std::cout << "> ";
-      std::cin >> sentry;
-      dispatcher(pb, sentry);
+      std::cin >> input;
+      option = atoi(input);
+      dispatcher(pb, option);
    }
 }
 
@@ -55,4 +64,3 @@ int main()
    pb.search(10);
    input(&pb);
 }
-
