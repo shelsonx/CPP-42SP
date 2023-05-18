@@ -14,7 +14,7 @@ class Contact {
         std::string darkest_secret;
     public:
         Contact();
-        Contact(int, std::string, std::string, std::string, std::string, std::string);
+        Contact(std::string, std::string, std::string, std::string, std::string);
         int  get_id();
         void set_id(int);
         void display();

@@ -1,8 +1,14 @@
 #include "PhoneBook.hpp"
 
+int PhoneBook::counter = -1;
+
+PhoneBook::PhoneBook()
+{
+    counter++;
+}
+
 void PhoneBook::add(Contact contact)
 {
-    //this->contacts[this->counter] = contact;
-    contact.set_id(this->counter);
-    this->counter++;
+    this->contacts[counter] = contact;
+    this->contacts[counter].set_id(counter);
 }

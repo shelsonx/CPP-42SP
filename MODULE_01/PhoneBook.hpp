@@ -5,9 +5,10 @@
 
 class PhoneBook {
     private:
-        Contact contacts[8];
-        int counter;
+        static int counter;
     public:
+        Contact contacts[8];
+        PhoneBook();
         void add(Contact contact);
 };
 
