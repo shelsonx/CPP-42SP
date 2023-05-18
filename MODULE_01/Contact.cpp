@@ -29,10 +29,6 @@ void Contact::set_id(int id)
 
 void Contact::display()
 {
-   /*  std::cout << std::setw(10) << "INDEX" 
-        << "|" << std::setw(10) << "FIRST_NAME"
-        << "|" << std::setw(10) << "LAST_NAME"
-        << "|" << std::setw(10) << "NICKNAME|" << std::endl; */
     std::cout << std::setw(10) << this->id
         << "|" << std::setw(10) << this->first_name
         << "|" << std::setw(10) << this->last_name

@@ -10,6 +10,9 @@ class PhoneBook {
         Contact contacts[8];
         PhoneBook();
         void add(Contact contact);
+        void search(int);
+        void display_indexes();
+        void display_contacts();
 };
 
 #endif

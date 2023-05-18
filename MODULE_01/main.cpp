@@ -3,7 +3,9 @@
 int main()
 {
    PhoneBook pb;
-   Contact c1("Davi", "Alves", "principe", "91992536693", "shelldorydavi");
-   pb.add(c1);
-   pb.contacts[0].display();
+   pb.add(Contact("Davi", "Alves", "principe", "91992536693", "shelldorydavi"));
+   pb.add(Contact("Doriane", "Alves", "dory", "91992536693", "dorishell"));
+   pb.add(Contact("Shelson", "Alves", "shell", "91992536693", "shelldd"));
+   pb.display_contacts();
+   pb.search(10);
 }
