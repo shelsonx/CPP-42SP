@@ -17,6 +17,16 @@ Contact::Contact(
     this->darkest_secret = darkest_secret;
 }
 
+int Contact::get_id()
+{
+    return this->id;
+}
+
+void Contact::set_id(int id)
+{
+    this->id = id;
+}
+
 void Contact::display()
 {
    /*  std::cout << std::setw(10) << "INDEX" 

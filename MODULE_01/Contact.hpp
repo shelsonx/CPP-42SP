@@ -1,5 +1,5 @@
 #ifndef CONTACT_HPP
-# define CONTACT_HPP
+#define CONTACT_HPP
 
 #include <iostream>
 #include <string.h>
@@ -15,6 +15,9 @@ class Contact {
     public:
         Contact();
         Contact(int, std::string, std::string, std::string, std::string, std::string);
+        int  get_id();
+        void set_id(int);
         void display();
 };
+
 #endif
