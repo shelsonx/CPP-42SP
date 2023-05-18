@@ -6,8 +6,8 @@
 class PhoneBook {
     private:
         static int counter;
-    public:
         Contact contacts[8];
+    public:
         PhoneBook();
         void add(Contact contact);
         void search(int);
