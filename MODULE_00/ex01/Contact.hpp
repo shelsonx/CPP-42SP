@@ -4,6 +4,8 @@
 #include <iostream>
 #include <string.h>
 
+#define MAX_CONTACTS 8
+
 class Contact {
     private:
         int id;

@@ -51,6 +51,8 @@ void    PhoneBook::search(int id)
 
 void PhoneBook::add(Contact contact)
 {
+    if (counter >= MAX_CONTACTS - 1)
+        counter = MAX_CONTACTS - 1;
     contact.set_id(counter);
     this->contacts[counter] = contact;
     counter++;

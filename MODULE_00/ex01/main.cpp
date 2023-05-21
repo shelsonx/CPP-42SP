@@ -17,15 +17,30 @@ Contact create_new_contact()
    return contact;
 }
 
+int	convert_input(std::string input)
+{
+	int result;
+
+	try
+	{
+		result = std::stoi(input);
+	}
+	catch(const std::exception& e)
+	{
+		result = -1;
+	}
+	return result;
+}
+
 void  search(PhoneBook *pb)
 {
-   int input;
+   std::string input;
 
    pb->display_contacts();
    std::cout << "Insert um id to search: ";
    std::cin >> input;
    std::cout << std::endl << "Result search: " << std::endl;
-   pb->search(input);
+   pb->search(convert_input(input));
    std::cout << std::endl;
 }
 
@@ -43,13 +58,14 @@ void dispatcher(PhoneBook *pb, int option)
          std::cout << "Exited Successfully!" << std::endl;
          break;
       default:
+         std::cout << std::endl << "Option Invalid!" << std::endl << std::endl;
          break;
    }      
 }
 
-void system(PhoneBook *pb)
+void execute_system(PhoneBook *pb)
 {
-   char input[1];
+   std::string input;
    int option = -1;
    while (option != 3)
    {
@@ -59,13 +75,18 @@ void system(PhoneBook *pb)
       std::cout << "3- Exit" << std::endl;
       std::cout << "> ";
       std::cin >> input;
-      option = atoi(input);
+      option = convert_input(input);
       dispatcher(pb, option);
    }
 }
 
-int main()
+int main(int argc, char **argv)
 {
-   PhoneBook pb;
-   system(&pb);
+	if (argc > 1)
+	{
+		std::cout << "Arguments are not allowed!" << std::endl;
+		exit(1);
+	}
+   	PhoneBook pb;
+   	execute_system(&pb);
 }

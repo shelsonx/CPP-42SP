@@ -6,7 +6,7 @@
 class PhoneBook {
     private:
         static int counter;
-        Contact contacts[8];
+        Contact contacts[MAX_CONTACTS];
     public:
         PhoneBook();
         void add(Contact contact);
