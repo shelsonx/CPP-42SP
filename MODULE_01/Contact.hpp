@@ -18,6 +18,7 @@ class Contact {
         int  get_id();
         void set_id(int);
         void display();
+        void display_all();
 };
 
 #endif

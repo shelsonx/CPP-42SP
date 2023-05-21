@@ -11,9 +11,20 @@ PhoneBook::PhoneBook()
 void PhoneBook::display_indexes()
 {
      std::cout << std::setw(10) << "INDEX" 
-        << "|" << std::setw(10) << "FIRST_NAME"
-        << "|" << std::setw(10) << "LAST_NAME"
+        << "|" << std::setw(10) << "FIRST NAME"
+        << "|" << std::setw(10) << "LAST NAME"
         << "|" << std::setw(10) << "NICKNAME"
+        << "|" << std::endl;
+}
+
+void PhoneBook::display_indexes_all()
+{
+     std::cout << std::setw(10) << "INDEX"
+        << "|" << std::setw(10) << "FIRST NAME"
+        << "|" << std::setw(10) << "LAST NAME"
+        << "|" << std::setw(10) << "NICKNAME"
+        << "|" << std::setw(10) << "PHONE"
+        << "|" << std::setw(10) << "SECRET"
         << "|" << std::endl;
 }
 
@@ -30,8 +41,8 @@ void    PhoneBook::search(int id)
     {
         if (contacts[i].get_id() == id)
         {
-            display_indexes();
-            contacts[i].display();
+            display_indexes_all();
+            contacts[i].display_all();
             return ;
         }
     }

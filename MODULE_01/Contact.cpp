@@ -32,5 +32,17 @@ void Contact::display()
     std::cout << std::setw(10) << this->id
         << "|" << std::setw(10) << this->first_name
         << "|" << std::setw(10) << this->last_name
-        << "|" << std::setw(10) << this->nickname << "|" << std::endl;
+        << "|" << std::setw(10) << this->nickname 
+        << "|" << std::endl;
+}
+
+void Contact::display_all()
+{
+    std::cout << std::setw(10) << this->id
+        << "|" << std::setw(10) << this->first_name
+        << "|" << std::setw(10) << this->last_name
+        << "|" << std::setw(10) << this->nickname
+        << "|" << std::setw(10) << this->phone_number
+        << "|" << std::setw(10) << this->darkest_secret 
+        << "|" << std::endl;
 }

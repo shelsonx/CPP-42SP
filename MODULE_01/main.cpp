@@ -17,6 +17,18 @@ Contact create_new_contact()
    return contact;
 }
 
+void  search(PhoneBook *pb)
+{
+   int input;
+
+   pb->display_contacts();
+   std::cout << "Insert um id to search: ";
+   std::cin >> input;
+   std::cout << std::endl << "Result search: " << std::endl;
+   pb->search(input);
+   std::cout << std::endl;
+}
+
 void dispatcher(PhoneBook *pb, int option)
 {
    switch (option)
@@ -25,29 +37,26 @@ void dispatcher(PhoneBook *pb, int option)
          pb->add(create_new_contact());
          break;
       case 2:
-         std::cout << "Missing implement!" << std::endl;
+         search(pb);
          break;
       case 3:
-         std::cout << "Missing implement!" << std::endl;
+         std::cout << "Exited Successfully!" << std::endl;
          break;
       default:
          break;
-   }
-   if (option != 4)
-      pb->display_contacts();
+   }      
 }
 
-void input(PhoneBook *pb)
+void system(PhoneBook *pb)
 {
    char input[1];
    int option = -1;
-   while (option != 4)
+   while (option != 3)
    {
       std::cout << "Select option: " << std::endl;
       std::cout << "1- Add new contact" << std::endl;
       std::cout << "2- Search an contact" << std::endl;
-      std::cout << "3- Display all contacts" << std::endl;
-      std::cout << "4- Exit" << std::endl;
+      std::cout << "3- Exit" << std::endl;
       std::cout << "> ";
       std::cin >> input;
       option = atoi(input);
@@ -58,9 +67,5 @@ void input(PhoneBook *pb)
 int main()
 {
    PhoneBook pb;
-   pb.add(Contact("Davi", "Alves", "principe", "91992536693", "shelldorydavi"));
-   pb.add(Contact("Doriane", "Alves", "dory", "91992536693", "dorishell"));
-   pb.add(Contact("Shelson", "Alves", "shell", "91992536693", "shelldd"));
-   pb.search(10);
-   input(&pb);
+   system(&pb);
 }

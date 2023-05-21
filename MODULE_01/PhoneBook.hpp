@@ -12,6 +12,7 @@ class PhoneBook {
         void add(Contact contact);
         void search(int);
         void display_indexes();
+        void display_indexes_all();
         void display_contacts();
 };
 
