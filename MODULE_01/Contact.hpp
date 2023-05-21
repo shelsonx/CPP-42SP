@@ -19,6 +19,7 @@ class Contact {
         void set_id(int);
         void display();
         void display_all();
+        std::string format_length(std::string);
 };
 
 #endif

@@ -27,22 +27,32 @@ void Contact::set_id(int id)
     this->id = id;
 }
 
+std::string Contact::format_length(std::string field)
+{
+    std::string replaced;
+
+    replaced = field;
+    if (field.length() > 10)
+        replaced = field.substr(0, 9) + ".";
+    return replaced;
+}
+
 void Contact::display()
 {
     std::cout << std::setw(10) << this->id
-        << "|" << std::setw(10) << this->first_name
-        << "|" << std::setw(10) << this->last_name
-        << "|" << std::setw(10) << this->nickname 
-        << "|" << std::endl;
+        << "|" << std::setw(10) << this->format_length(this->first_name)
+        << "|" << std::setw(10) << this->format_length(this->last_name)
+        << "|" << std::setw(10) << this->format_length(this->nickname)
+        << "|" << std::setw(10) << std::endl;
 }
 
 void Contact::display_all()
 {
     std::cout << std::setw(10) << this->id
-        << "|" << std::setw(10) << this->first_name
-        << "|" << std::setw(10) << this->last_name
-        << "|" << std::setw(10) << this->nickname
-        << "|" << std::setw(10) << this->phone_number
-        << "|" << std::setw(10) << this->darkest_secret 
-        << "|" << std::endl;
+        << "|" << std::setw(10) << this->format_length(this->first_name)
+        << "|" << std::setw(10) << this->format_length(this->last_name)
+        << "|" << std::setw(10) << this->format_length(this->nickname)
+        << "|" << std::setw(10) << this->format_length(this->phone_number)
+        << "|" << std::setw(10) << this->format_length(this->darkest_secret)
+        << "|"  << std::setw(10) << std::endl;
 }
