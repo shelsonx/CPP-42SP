@@ -3,16 +3,22 @@
 Contact create_new_contact()
 {
    std::string first_name, last_name, nickname, phone_number, darkest_secret;
+
    std::cout << "First name: ";
-   std::cin >> first_name;
+   std::getline(std::cin, first_name, '\n');
+
    std::cout << "Last name: ";
-   std::cin >> last_name;
+   std::getline(std::cin, last_name);
+
    std::cout << "Nickname: ";
-   std::cin >> nickname;
+   std::getline(std::cin, nickname);
+
    std::cout << "Phone number: ";
-   std::cin >> phone_number;
+   std::getline(std::cin, phone_number);
+
    std::cout << "Darkest secret: ";
-   std::cin >> darkest_secret;
+   std::getline(std::cin, darkest_secret);
+
    Contact contact(first_name, last_name, nickname, phone_number, darkest_secret);
    return contact;
 }
@@ -74,7 +80,7 @@ void execute_system(PhoneBook *pb)
       std::cout << "2- Search an contact" << std::endl;
       std::cout << "3- Exit" << std::endl;
       std::cout << "> ";
-      std::cin >> input;
+      std::getline(std::cin, input, '\n');
       option = convert_input(input);
       dispatcher(pb, option);
    }
@@ -87,6 +93,6 @@ int main(int argc, char **argv)
 		std::cout << "Arguments are not allowed!" << std::endl;
 		exit(1);
 	}
-   	PhoneBook pb;
-   	execute_system(&pb);
+   PhoneBook pb;
+   execute_system(&pb);
 }
