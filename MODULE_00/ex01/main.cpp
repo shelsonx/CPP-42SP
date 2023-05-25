@@ -5,19 +5,19 @@ Contact create_new_contact()
    std::string first_name, last_name, nickname, phone_number, darkest_secret;
 
    std::cout << "First name: ";
-   std::getline(std::cin, first_name, '\n');
+   std::cin >> first_name;
 
    std::cout << "Last name: ";
-   std::getline(std::cin, last_name);
+   std::cin >> last_name;
 
    std::cout << "Nickname: ";
-   std::getline(std::cin, nickname);
+   std::cin >> nickname;
 
    std::cout << "Phone number: ";
-   std::getline(std::cin, phone_number);
+   std::cin >> phone_number;
 
    std::cout << "Darkest secret: ";
-   std::getline(std::cin, darkest_secret);
+   std::cin >> darkest_secret;
 
    Contact contact(first_name, last_name, nickname, phone_number, darkest_secret);
    return contact;
@@ -80,7 +80,7 @@ void execute_system(PhoneBook *pb)
       std::cout << "2- Search an contact" << std::endl;
       std::cout << "3- Exit" << std::endl;
       std::cout << "> ";
-      std::getline(std::cin, input, '\n');
+      std::cin >> input;
       option = convert_input(input);
       dispatcher(pb, option);
    }
