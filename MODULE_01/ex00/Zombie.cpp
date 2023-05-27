@@ -2,15 +2,27 @@
 
 void Zombie::announce()
 {
-    std::cout << this->getName() << ": BraiiiiiiinnnzzzZ..." << std::endl;
+    std::cout << this->_name << ": BraiiiiiiinnnzzzZ..." << std::endl;
 }
 
-void Zombie::setName(std::string name)
+Zombie::Zombie(std::string name)
 {
     this->_name = name;
 }
 
-std::string Zombie::getName(void)
+Zombie::~Zombie(void)
 {
-    return this->_name;
+    std::cout << this->_name << " destroyd" << std::endl;
+}
+
+Zombie* newZombie(std::string name)
+{
+    Zombie *zombie = new Zombie(name);
+    return zombie;
+}
+
+void randomChump(std::string name)
+{
+    Zombie zombie(name);
+    zombie.announce();
 }

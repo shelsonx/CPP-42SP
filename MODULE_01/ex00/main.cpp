@@ -2,7 +2,8 @@
 
 int main()
 {
-    Zombie z1;
-    z1.setName("foo");
-    z1.announce();
+    Zombie *z = newZombie("Foo");
+    z->announce();
+    delete z;
+    randomChump("Bar");
 }
