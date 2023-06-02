@@ -9,9 +9,14 @@ std::string ReadFile::read(std::string filename)
     std::string text("");
 
     input.open(filename);
-    if (!input)
+    if (input.fail() || !input.is_open())
     {
         std::cout << "Unable to open file" << std::endl;
+        return std::string();
+    }
+    if (input.peek() == std::ifstream::traits_type::eof())
+    {
+        std::cout << "Empty file!" << std::endl;
         return std::string();
     }
     while (std::getline(input, inputStr))
