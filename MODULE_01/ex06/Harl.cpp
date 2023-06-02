@@ -16,13 +16,13 @@ void Harl::complain(std::string level)
     {
         case 0:
             debug();
-            [[fallthrough]];
+            // fallthrough
         case 1:
             info();
-            [[fallthrough]];
+            // fallthrough
         case 2:
             warning();
-            [[fallthrough]];
+            // fallthrough
         case 3:
             error();
             break;
