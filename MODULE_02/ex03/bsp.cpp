@@ -14,7 +14,7 @@ bool bsp(Point const a, Point const b, Point const c, Point const point) {
 
     Fixed r1 = getHorzDist(b, a) * getCrossProduct(point, a, b) * getHorzDist(point, a);
     Fixed r2 = getHorzDist(c, b) * getCrossProduct(point, c, b) * getHorzDist(point, b);
-    Fixed r3 = getHorzDist(a, c) * getCrossProduct(point, a, c) * getHorzDist(point, c);
+    Fixed r3 = getHorzDist(a, c) * getCrossProduct(point, c, a) * getHorzDist(point, c);
 
     return (r1 >= 0 && r2 >= 0 && r3 >= 0);
 }
