@@ -5,13 +5,14 @@ int main() {
     Point b(5, 0);
     Point c(0, 5);
 
-    Point pointInside(2, 2);
-    bool resultInside = bsp(a, b, c, pointInside);
-    std::cout << "Ponto: " << (resultInside ? "inside" : "outside") << std::endl;
+    Point point(2, 2);
+    std::cout << "Ponto: " 
+        << (bsp(a, b, c, point) ? "inside" : "outside") 
+        << std::endl;
 
-    Point pointOutside(10, 10);
-    bool resultOutside = bsp(a, b, c, pointOutside);
-    std::cout << "Ponto: " << (resultOutside ? "inside" : "outside") << std::endl;
-
+    point = Point(10, 10);
+    std::cout << "Ponto: " 
+        << (bsp(a, b, c, point) ? "inside" : "outside") 
+        << std::endl;
     return 0;
 }
