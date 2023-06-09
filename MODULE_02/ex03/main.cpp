@@ -1,18 +1,15 @@
 #include "Point.hpp"
 
 int main() {
-    Point a(0, 0);
-    Point b(5, 0);
-    Point c(0, 5);
+    Point a(2, 2);
+    Point b(6, 2);
+    Point c(4, 6);
 
-    Point point(2, 2);
-    std::cout << "Ponto: " 
-        << (bsp(a, b, c, point) ? "inside" : "outside") 
-        << std::endl;
+    Point inside1(4, 4);
+    Point outside1(5, 5);
 
-    point = Point(10, 10);
-    std::cout << "Ponto: " 
-        << (bsp(a, b, c, point) ? "inside" : "outside") 
-        << std::endl;
+    std::cout << "Point (4, 4): " << (bsp(a, b, c, inside1) ? "Inside" : "Outside") << std::endl;
+    std::cout << "Point (5, 5): " << (bsp(a, b, c, outside1) ? "Inside" : "Outside") << std::endl;
+
     return 0;
 }
