@@ -12,7 +12,7 @@ class ClapTrap {
         ~ClapTrap();
 
         void attack(const std::string& target );
-        void takeDamge( unsigned int amount );
+        void takeDamage( unsigned int amount );
         void beRepaired( unsigned amount);
     private:
         std::string _name;
