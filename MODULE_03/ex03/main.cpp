@@ -7,6 +7,7 @@ int main(void)
     FragTrap ft("Mr. Roboot 3");
     DiamondTrap dt("Monster");
 
+    std::cout << std::endl;
     dt.attack(ct.getName());
     std::cout << std::endl;
     dt.takeDamage(5);
