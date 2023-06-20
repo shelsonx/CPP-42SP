@@ -56,7 +56,7 @@ void ClapTrap::attack(const std::string& target ) {
         << std::endl;
 }
 
-void ClapTrap::beRepaired( unsigned amount) {
+void ClapTrap::beRepaired( unsigned int amount) {
     if (this->_hitPoint <= 0 )
     {
         std::cout << "It cannot recover, for it is dead." << std::endl;
