@@ -12,7 +12,7 @@ class Animal {
         ~Animal();
 
         std::string getType() const;
-    private:
+    protected:
         std::string _type;
 
 };
