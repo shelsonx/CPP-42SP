@@ -2,7 +2,7 @@
 
 Animal::Animal() {
     std::cout << "Animal: Default constructor called!" << std::endl;
-    _type = "Animal";
+    _type = "Generic Animal";
 }
 
 Animal::Animal(const Animal& other) {
@@ -23,4 +23,8 @@ Animal::~Animal() {
 
 std::string Animal::getType() const {
     return this->_type;
+}
+
+void Animal::makeSound() {
+    std::cout << "Generic Sound!" << std::endl;
 }

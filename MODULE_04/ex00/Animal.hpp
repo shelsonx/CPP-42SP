@@ -12,6 +12,7 @@ class Animal {
         ~Animal();
 
         std::string getType() const;
+        void makeSound();
     protected:
         std::string _type;
 
