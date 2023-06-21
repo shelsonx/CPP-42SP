@@ -25,6 +25,6 @@ std::string Animal::getType() const {
     return this->_type;
 }
 
-void Animal::makeSound() {
+void Animal::makeSound() const{
     std::cout << "Generic Sound!" << std::endl;
 }

@@ -1,6 +1,6 @@
 NAME =  animals
 
-SRC = Animal.cpp Cat.cpp main.cpp
+SRC = Animal.cpp Cat.cpp Dog.cpp main.cpp
 OBJ_PATH		= ./objects/
 
 CPLUSPLUS = c++
