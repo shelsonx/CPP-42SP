@@ -1,23 +1,22 @@
-#include <iomanip>
 #include "Animal.hpp"
+#include "Brain.hpp"
 #include "Cat.hpp"
 #include "Dog.hpp"
 
-#include "WrongAnimal.hpp"
-#include "WrongCat.hpp"
-#include "Brain.hpp"
-
 int main (void) {
-    Brain b1;
-    std::string* ideas;
+    Animal* animals[100];
 
-    b1.setIdea(0, "banana");
-    b1.setIdea(1, "uva");
-    std::cout << b1.getIdea(0) << std::endl;
-    std::cout << b1.getIdea(1) << std::endl;
-    ideas = b1.getIdeas();
-    std::cout << ideas[1] << std::endl;
-
-    delete [] ideas;
+    for (int i = 0; i < 50; i++) {
+        std::cout << i << std::endl;
+        animals[i] = new Dog();
+    }
+    for (int i = 50; i < 100; i++) {
+        std::cout << i << std::endl;
+        animals[i] = new Cat();
+    }
+    for (int i = 0; i < 100; i ++) {
+        std::cout << i << std::endl;
+        delete animals[i];
+    }
     return 0;
 }

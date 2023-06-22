@@ -1,6 +1,6 @@
 NAME =  animals
 
-SRC = Animal.cpp Cat.cpp Dog.cpp WrongAnimal.cpp WrongCat.cpp Brain.cpp main.cpp
+SRC = Animal.cpp Cat.cpp Dog.cpp Brain.cpp main.cpp
 OBJ_PATH		= ./objects/
 
 CPLUSPLUS = c++
@@ -36,8 +36,8 @@ leak:
 config-tests:
 	@test -f $(DOCTEST_HEADER) || wget https://raw.githubusercontent.com/doctest/doctest/master/doctest/doctest.h
 
-tests: config-tests tests.cpp Animal.cpp Cat.cpp Dog.cpp WrongAnimal.cpp WrongCat.cpp Brain.cpp $(DOCTEST_HEADER)
-	g++ tests.cpp Animal.cpp Cat.cpp Dog.cpp WrongAnimal.cpp WrongCat.cpp Brain.cpp -o tests
+tests: config-tests tests.cpp Animal.cpp Cat.cpp Dog.cpp Brain.cpp $(DOCTEST_HEADER)
+	g++ tests.cpp Animal.cpp Cat.cpp Dog.cpp Brain.cpp -o tests
 	./tests
 
 run:
