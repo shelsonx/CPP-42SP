@@ -29,3 +29,12 @@ Dog::~Dog() {
 void Dog::makeSound() const {
     std::cout << "Bark, Bark..." << std::endl;
 }
+
+Brain* Dog::getBrain() const {
+    return this->brain;
+}
+
+void Dog::setBrain(const Brain& brain) {
+    delete this->brain;
+    this->brain = new Brain(brain);
+}
