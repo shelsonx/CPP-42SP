@@ -29,3 +29,12 @@ Cat::~Cat() {
 void Cat::makeSound() const {
     std::cout << "Meow, Meow..." << std::endl;
 }
+
+Brain* Cat::getBrain() const {
+    return this->brain;
+}
+
+void Cat::setBrain(const Brain& brain) {
+    delete this->brain;
+    this->brain = new Brain(brain);
+}

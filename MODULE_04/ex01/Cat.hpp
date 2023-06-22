@@ -13,6 +13,8 @@ class Cat : public Animal {
         ~Cat();
 
         void makeSound() const;
+        Brain* getBrain() const;
+        void setBrain(const Brain& brain);
     private:
         Brain *brain;
 };

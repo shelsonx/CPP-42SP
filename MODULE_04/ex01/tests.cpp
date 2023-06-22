@@ -45,3 +45,24 @@ TEST_CASE("test gets and sets") {
     CHECK_EQ("", b1.getIdea(2));
     delete[] ideas;
 }
+
+TEST_CASE ("test constructs and brains") {
+    Cat c1;
+    Brain *brainC1 = c1.getBrain();
+    brainC1->setIdea(0, "idea_0");
+
+    Cat c2(c1);
+    Brain *brainC2 = c2.getBrain();
+    CHECK_EQ("idea_0", c2.getBrain()->getIdea(0));
+
+    brainC2->setIdea(0, "idea_change");
+    CHECK_EQ("idea_change", c2.getBrain()->getIdea(0));
+    CHECK_EQ("idea_0", c1.getBrain()->getIdea(0));
+
+    Cat c3 = c2;
+    Brain *brainC3 = c3.getBrain();
+    CHECK_EQ("idea_change", c3.getBrain()->getIdea(0));
+    brainC3->setIdea(0, "idea_change_change");
+    CHECK_EQ("idea_change_change", c3.getBrain()->getIdea(0));
+    CHECK_EQ("idea_change", c2.getBrain()->getIdea(0));
+}
