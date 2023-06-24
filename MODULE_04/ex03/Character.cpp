@@ -40,7 +40,7 @@ void Character::equip(AMateria* m) {
         return ;
     }
     for (int i = 0; i < MAX_SLOTS; i ++) {
-        if (this->_inventory[i] != NULL) {
+        if (this->_inventory[i] == NULL) {
             this->_inventory[i] = m;
             std::cout << "successfully equipped!" << std::endl;
             return ;
