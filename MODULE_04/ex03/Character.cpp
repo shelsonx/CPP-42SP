@@ -17,11 +17,6 @@ Character::Character(const Character& other) {
     *this = other;
 }
 
-Character::~Character() {
-    std::cout << "Character: Default destructor called!" << std::endl;
-    this->emptyInventory();
-}
-
 Character& Character::operator=(const Character& other) {
     std::cout << "Character: Copy assignment operator called!" << std::endl;
     if (this != &other) {
@@ -32,6 +27,11 @@ Character& Character::operator=(const Character& other) {
         }
     }
     return *this;
+}
+
+Character::~Character() {
+    std::cout << "Character: Default destructor called!" << std::endl;
+    this->emptyInventory();
 }
 
 void Character::equip(AMateria* m) {

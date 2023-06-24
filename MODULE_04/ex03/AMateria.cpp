@@ -1,4 +1,5 @@
 #include "AMateria.hpp"
+#include "ICharacter.hpp"
 
 AMateria::AMateria(std::string const & type) {
     std::cout << "AMateria: type with parameter constructor called!" << std::endl;
@@ -10,9 +11,9 @@ AMateria::AMateria() {
      _type = "unknown";
 }
 
-AMateria::AMateria(const AMateria& other) {
+AMateria::AMateria(const AMateria* other) {
     std::cout << "AMateria: Copy constructor called!" << std::endl;
-    _type = other._type;
+    _type = other->_type;
 }
 
 AMateria& AMateria::operator=(const AMateria& other) {
@@ -28,4 +29,8 @@ AMateria::~AMateria() {
 
 std::string const & AMateria::getType() const {
     return this->_type;
+}
+
+void AMateria::use(ICharacter& target) {
+    std::cout << "* Invalid used " << target.getName() << " *" << std::endl;
 }
