@@ -4,7 +4,7 @@ SRC = AMateria.cpp Cure.cpp Ice.cpp Character.cpp MateriaSource.cpp main.cpp
 OBJ_PATH		= ./objects/
 
 CPLUSPLUS = c++
-CPLUSPLUSFLAGS = -Wall -Wextra -Werror -std=c++98
+CPLUSPLUSFLAGS = -Wall -Wextra -Werror -std=c++98 -g3
 
 $(OBJ_PATH)%.o: %.cpp
 				mkdir -p $(OBJ_PATH)

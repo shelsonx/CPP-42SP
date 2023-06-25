@@ -32,5 +32,5 @@ std::string const & AMateria::getType() const {
 }
 
 void AMateria::use(ICharacter& target) {
-    std::cout << "* Invalid used " << target.getName() << " *" << std::endl;
+    std::cout << "* Invalid use " << target.getName() << " *" << std::endl;
 }
