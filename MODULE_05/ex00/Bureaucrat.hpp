@@ -34,6 +34,10 @@ class Bureaucrat {
 
         static const int highestGrade = 1;
         static const int lowestGrade = 150;
+
+        void checkGrade(const int grade) const;
 };
+
+std::ostream& operator<<(std::ostream& out, const Bureaucrat& b);
 
 #endif
