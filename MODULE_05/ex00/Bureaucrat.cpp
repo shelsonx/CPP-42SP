@@ -27,13 +27,13 @@ Bureaucrat::Bureaucrat(const std::string& name, const int grade) :
 }
 
 void Bureaucrat::increment() {
-    this->checkGrade(this->getGrade());
     this->_grade--;
+    this->checkGrade(this->getGrade());
 }
 
 void Bureaucrat::decrement() {
-    this->checkGrade(this->getGrade());
     this->_grade++;
+    this->checkGrade(this->getGrade());
 }
 
 Bureaucrat::~Bureaucrat() {
@@ -50,7 +50,7 @@ int Bureaucrat::getGrade() const {
 
 const char *Bureaucrat::GradeTooLowException::what() const throw() {
     return
-        "GradeTooLowException: Grade is below the minimum allowed value\n"; 
+        "GradeTooLowException: Grade is below the minimum allowed value.\n"; 
 }
 
 const char *Bureaucrat::GradeTooHighException::what() const throw() {
@@ -66,6 +66,7 @@ void Bureaucrat::checkGrade(const int grade) const {
 }
 
 std::ostream& operator<<(std::ostream& out, const Bureaucrat& b) {
-    out << b.getName() << ", bureaucrat grade. " << b.getGrade() << std::endl;
+    out << b.getName() << ", bureaucrat grade " 
+        << b.getGrade() << "." << std::endl;
     return out;
 }
