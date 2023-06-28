@@ -48,6 +48,19 @@ int Bureaucrat::getGrade() const {
     return this->_grade;
 }
 
+void Bureaucrat::signForm(Form form) const {
+    try {
+        form.beSigned(*this);
+        std::cout << this->getName() << " signed " 
+            << form.getName() << std::endl;
+    }
+    catch (std::exception& e) {
+        std::cout << this->getName() << " couldn't sign " 
+            << form.getName() << " because " << e.what()
+            << std::endl;
+    }
+}
+
 const char *Bureaucrat::GradeTooLowException::what() const throw() {
     return
         "GradeTooLowException: Grade is below the minimum allowed value.\n"; 

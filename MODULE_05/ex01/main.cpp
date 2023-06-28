@@ -139,5 +139,16 @@ int main(void) {
         std::cout << e.what();
         std::cout << YELLOW << "end f10." << std::endl << RESET;
     }
+    std::cout << CYAN << std::setw(40) << std::setfill('*') << "" << std::endl;
+    std::cout << BLUE << "signForm in  Bureaucrat: OK!" << std::endl << GREEN;
+   
+    Bureaucrat b11("b11", 7);
+    b11.signForm(Form("f11", 42, 42));
+
+    std::cout << CYAN << std::setw(40) << std::setfill('*') << "" << std::endl;
+    std::cout << PURPLE << "signForm in  Bureaucrat: FAIL!" << std::endl << RED;
+    
+    Bureaucrat b12("b12", 7);
+    b12.signForm(Form("f12", 1, 1));
     std::cout << CYAN << std::setw(40) << std::setfill('*') << "" << std::endl << RESET;
 }
