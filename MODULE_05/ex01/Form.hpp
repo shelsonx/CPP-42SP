@@ -17,6 +17,7 @@ class Form {
         const std::string& getName() const;
         const int& getGradeSigned() const;
         const int& getGradeExecute() const;
+        const bool& isSigned() const;
         
         void beSigned(const Bureaucrat& b);
 
@@ -35,6 +36,11 @@ class Form {
         const int _gradeSigned;
         const int _gradeExecute;
         bool _isSigned;
+
+        static const int highestGrade = 1;
+        static const int lowestGrade = 150;
+
+        void checkGrade(const int& grade) const;
 };
 
 std::ostream& operator<<(std::ostream& out, const Form& f);
