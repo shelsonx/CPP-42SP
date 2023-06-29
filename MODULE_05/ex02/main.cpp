@@ -56,5 +56,19 @@ int main(void) {
         std::cout << RED;
         std::cout << e.what();
     }
+
+    std::cout << CYAN << std::setw(40) << std::setfill('*') << "" << std::endl;
+    std::cout << BLUE << "Bureaucrat execute form Test: OK!" << std::endl << RESET;
+    ShrubberyCreationForm s4("luccaForm");
+    Bureaucrat b3("b3", 44);
+    try {
+        std::cout << GREEN;
+        b3.signForm(s4);
+        b3.executeForm(s4);
+        std::cout << RESET;
+    }
+    catch (std::exception& e) {
+        std::cout << e.what();
+    }
     std::cout << CYAN << std::setw(40) << std::setfill('*') << "" << std::endl << RESET;
 }

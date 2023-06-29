@@ -61,6 +61,19 @@ void Bureaucrat::signForm(AForm& form) const {
     }
 }
 
+void Bureaucrat::executeForm(AForm const & form) {
+    try {
+        form.execute(*this);
+        std::cout << this->getName() << " executed " 
+            << form.getName() << std::endl;
+    }
+    catch (std::exception& e) {
+        std::cout << this->getName() << " couldn't execute " 
+            << form.getName() << " because " << e.what()
+            << std::endl;
+    } 
+}
+
 const char *Bureaucrat::GradeTooLowException::what() const throw() {
     return
         "GradeTooLowException: Grade is below the minimum allowed value.\n"; 
