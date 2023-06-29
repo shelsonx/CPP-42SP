@@ -1,6 +1,6 @@
 NAME =  forms
 
-SRC = Bureaucrat.cpp AForm.cpp ShrubberyCreationForm.cpp main.cpp
+SRC = Bureaucrat.cpp AForm.cpp ShrubberyCreationForm.cpp RobotomyRequestForm.cpp main.cpp
 OBJ_PATH		= ./objects/
 
 CPLUSPLUS = c++

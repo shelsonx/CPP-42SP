@@ -1,6 +1,7 @@
 #include <iomanip>
 #include "AForm.hpp"
 #include "ShrubberyCreationForm.hpp"
+#include "RobotomyRequestForm.hpp"
 
 #define RESET	"\e[0m"
 #define RED		"\e[31m"
@@ -66,6 +67,18 @@ int main(void) {
         b3.signForm(s4);
         b3.executeForm(s4);
         std::cout << RESET;
+    }
+    catch (std::exception& e) {
+        std::cout << e.what();
+    }
+
+    std::cout << CYAN << std::setw(40) << std::setfill('*') << "" << std::endl;
+    std::cout << BLUE << "RobotomyRequestForm execute method Test: OK!" << std::endl << RESET;
+    try {
+        Bureaucrat b4("b4", 44);
+        RobotomyRequestForm r1("r1");
+        b4.signForm(r1);
+        r1.execute(b4);
     }
     catch (std::exception& e) {
         std::cout << e.what();
