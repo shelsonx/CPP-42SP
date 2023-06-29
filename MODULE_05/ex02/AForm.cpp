@@ -50,6 +50,13 @@ const char* AForm::FormNotSignedException::what() const throw() {
         "A form has not been signed yet.\n";
 }
 
+void AForm::execute(Bureaucrat const & executor) const {
+    if (executor.getGrade() > this->getGradeExecute())
+        throw AForm::GradeTooLowException();
+    if (this->isSigned() == false)
+        throw AForm::FormNotSignedException();
+}
+
 void AForm::beSigned(const Bureaucrat& b) {
     if (b.getGrade() > this->getGradeSigned())
         throw GradeTooLowException();
