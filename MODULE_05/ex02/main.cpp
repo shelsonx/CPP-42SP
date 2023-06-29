@@ -2,6 +2,7 @@
 #include "AForm.hpp"
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
+#include "PresidentialPardonForm.hpp"
 
 #define RESET	"\e[0m"
 #define RED		"\e[31m"
@@ -79,6 +80,20 @@ int main(void) {
         RobotomyRequestForm r1("r1");
         b4.signForm(r1);
         r1.execute(b4);
+    }
+    catch (std::exception& e) {
+        std::cout << e.what();
+    }
+
+    std::cout << CYAN << std::setw(40) << std::setfill('*') << "" << std::endl;
+    std::cout << BLUE << "PresidentialPardonForm execute method Test: OK!" << std::endl << RESET;
+    try {
+        Bureaucrat b5("b5", 4);
+        PresidentialPardonForm p1("p1-Presidential");
+        b5.signForm(p1);
+        std::cout << GREEN;
+        p1.execute(b5);
+        std::cout << RESET;
     }
     catch (std::exception& e) {
         std::cout << e.what();
