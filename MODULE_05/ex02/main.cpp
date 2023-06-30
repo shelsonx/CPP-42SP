@@ -28,7 +28,7 @@ int main(void) {
     }
 
     std::cout << CYAN << std::setw(40) << std::setfill('*') << "" << std::endl;
-    std::cout << BLUE << "Form signed Successfully Test: FAIL!" << std::endl << RESET;
+    std::cout << BLUE << "Form signed Successfully Test: OK!" << std::endl << RESET;
     ShrubberyCreationForm s2("shellForm");
     Bureaucrat b1("b1", 44);
     try {
