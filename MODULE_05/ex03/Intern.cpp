@@ -35,7 +35,7 @@ const char* Intern::FormDoesNotExists::what() const throw() {
 }
 
 int Intern::getIndexForm(const std::string name) const {
-    std::string typesForms[3] = {"shrubbery creation", "robotomy request", "presidential pardon"};
+    std::string typesForms[this->SIZE] = {"shrubbery creation", "robotomy request", "presidential pardon"};
     
     for (int i = 0; i < this->SIZE; i++)
     {
@@ -49,7 +49,7 @@ AForm* Intern::makeForm(const std::string name, const std::string target) {
     AForm* form;
     int index;
     
-    AForm* (Intern::*forms[3])(const std::string) const = {
+    AForm* (Intern::*forms[this->SIZE])(const std::string) const = {
         &Intern::shrubberyCreationForm, &Intern::robotomyRequestForm, &Intern::presidentialPardonForm};
     index =  this->getIndexForm(name);
     if (index != -1) {

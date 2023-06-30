@@ -28,8 +28,6 @@ class Intern {
     
     private:
         static const int SIZE  = 3;
-        AForm* forms[SIZE];
-
         int getIndexForm(const std::string name) const;
 
 };
