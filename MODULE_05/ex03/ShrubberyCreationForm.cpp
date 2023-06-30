@@ -1,7 +1,7 @@
 #include "ShrubberyCreationForm.hpp"
 #include <fstream>
 
-const int Grades::SIGN = 45;
+const int Grades::SIGN = 145;
 const int Grades::EXECUTE = 137;
 
 const std::string Grades::ASCII_TREE =

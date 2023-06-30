@@ -27,13 +27,13 @@ Bureaucrat::Bureaucrat(const std::string& name, const int grade) :
 }
 
 void Bureaucrat::increment() {
+    this->checkGrade(this->getGrade() - 1);
     this->_grade--;
-    this->checkGrade(this->getGrade());
 }
 
 void Bureaucrat::decrement() {
+    this->checkGrade(this->getGrade() + 1);
     this->_grade++;
-    this->checkGrade(this->getGrade());
 }
 
 Bureaucrat::~Bureaucrat() {
@@ -48,7 +48,7 @@ int Bureaucrat::getGrade() const {
     return this->_grade;
 }
 
-void Bureaucrat::signForm(Form form) const {
+void Bureaucrat::signForm(Form& form) const {
     try {
         form.beSigned(*this);
         std::cout << this->getName() << " signed " 

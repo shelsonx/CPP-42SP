@@ -27,13 +27,13 @@ Bureaucrat::Bureaucrat(const std::string& name, const int grade) :
 }
 
 void Bureaucrat::increment() {
+    this->checkGrade(this->getGrade() - 1);
     this->_grade--;
-    this->checkGrade(this->getGrade());
 }
 
 void Bureaucrat::decrement() {
+    this->checkGrade(this->getGrade() + 1);
     this->_grade++;
-    this->checkGrade(this->getGrade());
 }
 
 Bureaucrat::~Bureaucrat() {
