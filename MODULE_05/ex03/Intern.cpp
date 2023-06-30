@@ -50,7 +50,9 @@ AForm* Intern::makeForm(const std::string name, const std::string target) {
     int index;
     
     AForm* (Intern::*forms[this->SIZE])(const std::string) const = {
-        &Intern::shrubberyCreationForm, &Intern::robotomyRequestForm, &Intern::presidentialPardonForm};
+        &Intern::shrubberyCreationForm, 
+        &Intern::robotomyRequestForm, 
+        &Intern::presidentialPardonForm};
     index =  this->getIndexForm(name);
     if (index != -1) {
         form = (this->*forms[index])(target);
