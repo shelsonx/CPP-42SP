@@ -21,6 +21,8 @@ $(NAME): $(OBJ)
 clean:
 	$(RM) $(OBJ)
 	rm -rf $(OBJ_PATH)
+	$(RM) $(DOCTEST_HEADER)
+	$(RM) tests
 
 fclean: clean
 	$(RM) $(NAME)
