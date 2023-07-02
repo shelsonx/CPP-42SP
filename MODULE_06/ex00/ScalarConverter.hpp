@@ -3,6 +3,8 @@
 #define SCALARCONVERTER_HPP
 
 #include <iostream>
+#include "Converter.hpp"
+#include "DataConverter.hpp"
 
 class ScalarConverter {
     public:
@@ -16,8 +18,18 @@ class ScalarConverter {
         static bool isDouble(const std::string& str);
         static bool isFloat(const std::string& str);
 
+        void convertChar(const std::string& str);
+        void initDataConverters();
+
         static void convert(const std::string& str);
+
     private:
+        DataConverter _dataConverter;
+        CharConverter _charConverter;
+        IntConverter _intConverter;
+        FloatConverter _floatConverter;
+        DoubleConverter _doubleConverter;
+
 };
 
 #endif

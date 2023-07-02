@@ -1,7 +1,8 @@
 #include "ScalarConverter.hpp"
 
-int main(void) {
+int main(int argc, char **argv) {
+    (void) argc;
     ScalarConverter converter;
 
-    converter.convert("");
+    converter.convertChar(argv[1]);
 }

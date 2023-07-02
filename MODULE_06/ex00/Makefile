@@ -1,6 +1,6 @@
 NAME =  converter
 
-SRC = ScalarConverter.cpp main.cpp
+SRC =  Converter.cpp DataConverter.cpp ScalarConverter.cpp main.cpp
 OBJ_PATH		= ./objects/
 
 CPLUSPLUS = c++
