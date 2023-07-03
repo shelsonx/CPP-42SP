@@ -5,6 +5,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <climits>
+#include <cfloat>
 #include "Converter.hpp"
 #include "DataConverter.hpp"
 
@@ -19,10 +20,12 @@ class ScalarConverter {
         static bool isInt(const std::string& str);
         static bool isDouble(const std::string& str);
         static bool isFloat(const std::string& str);
+        static void initDataConverters();
 
         static void convertChar(const std::string& str);
         static void convertInt(const std::string& str);
-        static void initDataConverters();
+        static void convertFloat(const std::string& str);
+        static void convertDouble(const std::string& str);
 
         static void convert(const std::string& str);
 

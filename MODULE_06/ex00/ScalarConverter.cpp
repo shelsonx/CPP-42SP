@@ -35,8 +35,12 @@ void ScalarConverter::convert(const std::string& str) {
     initDataConverters();
     if (isChar(str))
         convertChar(str);
-    if (isInt(str))
+    else if (isInt(str))
         convertInt(str);
+    else if(isFloat(str))
+        convertFloat(str);
+    else if(isDouble(str))
+        convertDouble(str);
 }
 
 bool ScalarConverter::isChar(const std::string& str) {
@@ -107,5 +111,27 @@ void ScalarConverter::convertInt(const std::string& str) {
     _charConverter.setStrToChar(static_cast<char>(_intConverter.getStrToInt()));
     _floatConverter.setStrToFloat(static_cast<float>(_intConverter.getStrToInt()));
     _doubleConverter.setStrToDouble(static_cast<double>(_intConverter.getStrToInt()));
+    _dataConverter.notifyConverters();
+}
+
+void ScalarConverter::convertFloat(const std::string& str) {
+    double value = std::atof(str.c_str());
+    if (value > FLT_MAX || value < FLT_MIN)
+        return;
+    _floatConverter.setStrToFloat(static_cast<float>(value));
+    _charConverter.setStrToChar(static_cast<char>(_floatConverter.getStrToFloat()));
+    _intConverter.setStrToInt(static_cast<int>(_floatConverter.getStrToFloat()));
+    _doubleConverter.setStrToDouble(static_cast<double>(_floatConverter.getStrToFloat()));
+    _dataConverter.notifyConverters();
+}
+
+void ScalarConverter::convertDouble(const std::string& str) {
+    long double value = std::strtod(str.c_str(), NULL);
+    if (value > DBL_MAX || value < DBL_MIN)
+        return ;
+    _doubleConverter.setStrToDouble(static_cast<double>(value));
+    _charConverter.setStrToChar(static_cast<char>(_doubleConverter.getStrToDouble()));
+    _intConverter.setStrToInt(static_cast<int>(_doubleConverter.getStrToDouble()));
+    _floatConverter.setStrToFloat(static_cast<float>(_doubleConverter.getStrToDouble()));
     _dataConverter.notifyConverters();
 }
