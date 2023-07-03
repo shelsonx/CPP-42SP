@@ -39,7 +39,4 @@ tests: config-tests tests.cpp ScalarConverter.cpp $(DOCTEST_HEADER)
 	c++ tests.cpp ScalarConverter.cpp -o tests
 	./tests
 
-run:
-	./$(NAME)
-
-.PHONY: all clean fclean re leak run config-tests tests
+.PHONY: all clean fclean re leak config-tests tests
