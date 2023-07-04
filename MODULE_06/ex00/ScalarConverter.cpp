@@ -101,7 +101,7 @@ void ScalarConverter::convertChar(const std::string& str) {
     _doubleConverter.setStrToDouble(
         static_cast<double>(_charConverter.getStrToChar()));
     _dataConverter.notifyConverters();
-}   
+}
 
 void ScalarConverter::convertInt(const std::string& str) {
     _intConverter.checkConversion(str);

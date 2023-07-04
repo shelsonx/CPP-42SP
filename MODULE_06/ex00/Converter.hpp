@@ -6,6 +6,8 @@
 #include <cstdlib>
 #include <climits>
 #include <cfloat>
+#include <cctype>
+#include <cmath>
 
 class Converter {
     public:
@@ -21,7 +23,6 @@ class CharConverter : public Converter {
     public:
         void update();
         void checkConversion(const std::string& str);
-        bool isDisplayableChar(char c);
         char getStrToChar() const;
         void setStrToChar(char c);
     
@@ -44,6 +45,7 @@ class FloatConverter : public Converter {
     public:
         void update();
         void checkConversion(const std::string& str);
+        bool hasDecimal(float value);
         float getStrToFloat() const;
         void setStrToFloat(float f);
     
@@ -55,6 +57,7 @@ class DoubleConverter : public Converter {
     public:
         void update();
         void checkConversion(const std::string& str);
+        bool hasDecimal(double value);
         double getStrToDouble() const;
         void setStrToDouble(double d);
     

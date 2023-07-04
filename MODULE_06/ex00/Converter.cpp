@@ -5,19 +5,15 @@ Converter::Converter() {
 }
 
 void CharConverter::update() {
-    if (this->isDisplayableChar(this->_strToChar))
+    if (std::isprint(_strToChar))
         std::cout << "char: " << this->_strToChar << std::endl;
     else
-        std::cout << "char: Non displayable" << this->_strToChar << std::endl;
+        std::cout << "char: Non displayable" << std::endl;
 }
 
 void CharConverter::checkConversion(const std::string& str) {
     (void) str;
     return;
-}
-
-bool CharConverter::isDisplayableChar(char c) {
-    return (c >= 32 && c <= 126);
 }
 
 char CharConverter::getStrToChar() const {
@@ -52,13 +48,24 @@ void IntConverter::setStrToInt(int i) {
 }
 
 void FloatConverter::update() {
-    std::cout << "float: " << this->_strToFloat << ".0f" << std::endl;
+    if (this->isConvertible) {
+        std::cout << "float: " << this->_strToFloat 
+        << (hasDecimal(_strToFloat) ? ".0f": "f") << std::endl;
+    }
+    else
+        std::cout << "float: impossible" << std::endl;
 }
 
 void FloatConverter::checkConversion(const std::string& str) {
     double value = std::atof(str.c_str());
     if (value > FLT_MAX || value < FLT_MIN)
         this->isConvertible = false;
+}
+
+bool FloatConverter::hasDecimal(float value) {
+    float intPart;
+    float fracPart = std::modf(value, &intPart);
+    return fracPart == 0.0f;
 }
 
 float FloatConverter::getStrToFloat() const {
@@ -70,13 +77,24 @@ void FloatConverter::setStrToFloat(float f) {
 }
 
 void DoubleConverter::update() {
-    std::cout << "double: " << this->_strToDouble << ".0" << std::endl;
+    if (this->isConvertible) {
+        std::cout << "double: " << this->_strToDouble 
+        << (hasDecimal(_strToDouble) ? ".0": "") << std::endl;
+    }
+    else
+        std::cout << "double: impossible" << std::endl;
 }
 
 void DoubleConverter::checkConversion(const std::string& str) {
     long double value = std::strtod(str.c_str(), NULL);
     if (value > DBL_MAX || value < DBL_MIN)
         this->isConvertible = false;
+}
+
+bool DoubleConverter::hasDecimal(double value) {
+    double intPart;
+    double fracPart = std::modf(value, &intPart);
+    return fracPart == 0.0;
 }
 
 double DoubleConverter::getStrToDouble() const {
