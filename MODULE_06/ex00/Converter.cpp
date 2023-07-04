@@ -4,11 +4,27 @@ Converter::Converter() {
     this->isConvertible = true;
 }
 
+bool Converter::isPseudoLiteral(const std::string& str) {
+    const std::string types[8] = {
+        "inff", "+inff", "-inff", "nanf", 
+        "inf", "+inf", "-inf", "nan"};
+
+    for (int i = 0; i < 8; i++) {
+        if (types[i] == str)
+            return true;
+    }
+    return false;
+}
+
 void CharConverter::update() {
     if (std::isprint(_strToChar))
         std::cout << "char: " << this->_strToChar << std::endl;
     else
         std::cout << "char: Non displayable" << std::endl;
+}
+
+void CharConverter::pseudoLiteral() {
+    std::cout << "char: impossible" << std::endl;
 }
 
 void CharConverter::checkConversion(const std::string& str) {
@@ -29,6 +45,10 @@ void IntConverter::update() {
         std::cout << "int: " << this->_strToInt << std::endl;
     else
         std::cout << "int: impossible" << std::endl;
+}
+
+void IntConverter::pseudoLiteral() {
+    std::cout << "int: impossible" << std::endl;
 }
 
 void IntConverter::checkConversion(const std::string& str) {
@@ -56,10 +76,26 @@ void FloatConverter::update() {
         std::cout << "float: impossible" << std::endl;
 }
 
+void FloatConverter::pseudoLiteral() {
+     std::cout << "float: " << this->_strToFloat << "f" << std::endl;
+}
+
 void FloatConverter::checkConversion(const std::string& str) {
     double value = std::atof(str.c_str());
     if (value > FLT_MAX || value < FLT_MIN)
         this->isConvertible = false;
+}
+
+void FloatConverter::checkPseudoLiteral(const std::string& str) {
+    const std::string typesF[4] = {"inf", "+inf", "-inf", "nan"};
+    const std::string typesD[4] = {"inff", "+inff", "-inff", "nanf"};
+
+    if (str == typesF[0] || str == typesF[1] || str == typesD[0] || str == typesD[1])
+        _strToFloat = std::numeric_limits<double>::infinity();
+    else if (str == typesF[2] || str == typesD[2])
+        _strToFloat = -std::numeric_limits<double>::infinity();
+    else if (str == typesF[3] || str == typesD[3])
+        _strToFloat = std::numeric_limits<double>::quiet_NaN();
 }
 
 bool FloatConverter::hasDecimal(float value) {
@@ -85,10 +121,26 @@ void DoubleConverter::update() {
         std::cout << "double: impossible" << std::endl;
 }
 
+void DoubleConverter::pseudoLiteral() {
+     std::cout << "double: " << this->_strToDouble << std::endl;
+}
+
 void DoubleConverter::checkConversion(const std::string& str) {
     long double value = std::strtod(str.c_str(), NULL);
     if (value > DBL_MAX || value < DBL_MIN)
         this->isConvertible = false;
+}
+
+void DoubleConverter::checkPseudoLiteral(const std::string& str) {
+    const std::string typesF[4] = {"inf", "+inf", "-inf", "nan"};
+    const std::string typesD[4] = {"inff", "+inff", "-inff", "nanf"};
+
+    if (str == typesF[0] || str == typesF[1] || str == typesD[0] || str == typesD[1])
+        _strToDouble = std::numeric_limits<double>::infinity();
+    else if (str == typesF[2] || str == typesD[2])
+        _strToDouble = -std::numeric_limits<double>::infinity();
+    else if (str == typesF[3] || str == typesD[3])
+        _strToDouble = std::numeric_limits<double>::quiet_NaN();
 }
 
 bool DoubleConverter::hasDecimal(double value) {

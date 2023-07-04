@@ -8,6 +8,7 @@ class DataConverter {
     public:
         void addConverter(Converter* converter);
         void notifyConverters();
+        void notifyPseudoLiteral();
 
     private:
         static const int MAX_CONVERTERS = 4;

@@ -41,6 +41,18 @@ void ScalarConverter::convert(const std::string& str) {
         convertFloat(str);
     else if(isDouble(str))
         convertDouble(str);
+    else if (Converter::isPseudoLiteral(str)){
+        _floatConverter.checkPseudoLiteral(str);
+        _doubleConverter.checkPseudoLiteral(str);
+        _dataConverter.notifyPseudoLiteral();
+    }
+    else {
+        std::cout << "char: impossible" << std::endl;
+        std::cout << "int: impossible" << std::endl;
+        std::cout << "float: impossible" << std::endl;
+        std::cout << "double: impossible" << std::endl;
+    }
+    
 }
 
 bool ScalarConverter::isChar(const std::string& str) {

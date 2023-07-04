@@ -5,6 +5,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <climits>
+#include <limits>
 #include <cfloat>
 #include <cctype>
 #include <cmath>
@@ -13,7 +14,9 @@ class Converter {
     public:
         Converter();
         virtual void update() = 0;
+        virtual void pseudoLiteral() = 0;
         virtual void checkConversion(const std::string& str) = 0;
+        static bool isPseudoLiteral(const std::string& str);
     
     protected:
         bool isConvertible;
@@ -22,6 +25,7 @@ class Converter {
 class CharConverter : public Converter {
     public:
         void update();
+        void pseudoLiteral();
         void checkConversion(const std::string& str);
         char getStrToChar() const;
         void setStrToChar(char c);
@@ -33,6 +37,7 @@ class CharConverter : public Converter {
 class IntConverter : public Converter {
     public:
         void update();
+        void pseudoLiteral();
         void checkConversion(const std::string& str);
         int getStrToInt() const;
         void setStrToInt(int i);
@@ -44,7 +49,9 @@ class IntConverter : public Converter {
 class FloatConverter : public Converter {
     public:
         void update();
+        void pseudoLiteral();
         void checkConversion(const std::string& str);
+        void checkPseudoLiteral(const std::string& str);
         bool hasDecimal(float value);
         float getStrToFloat() const;
         void setStrToFloat(float f);
@@ -56,7 +63,9 @@ class FloatConverter : public Converter {
 class DoubleConverter : public Converter {
     public:
         void update();
+        void pseudoLiteral();
         void checkConversion(const std::string& str);
+        void checkPseudoLiteral(const std::string& str);
         bool hasDecimal(double value);
         double getStrToDouble() const;
         void setStrToDouble(double d);

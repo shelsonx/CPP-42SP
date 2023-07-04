@@ -12,3 +12,9 @@ void DataConverter::notifyConverters() {
         converters[i]->update();
     }
 }
+
+void DataConverter::notifyPseudoLiteral() {
+    for (int i = 0; i < count; ++i) {
+        converters[i]->pseudoLiteral();
+    } 
+}
