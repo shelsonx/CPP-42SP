@@ -104,10 +104,8 @@ void ScalarConverter::convertChar(const std::string& str) {
 }   
 
 void ScalarConverter::convertInt(const std::string& str) {
-    long int value = std::atol(str.c_str());
-    if (value > INT_MAX || value < INT_MIN)
-        return ;
-    _intConverter.setStrToInt(static_cast<int>(value));
+    _intConverter.checkConversion(str);
+    _intConverter.setStrToInt(static_cast<int>(std::atol(str.c_str())));
     _charConverter.setStrToChar(static_cast<char>(_intConverter.getStrToInt()));
     _floatConverter.setStrToFloat(static_cast<float>(_intConverter.getStrToInt()));
     _doubleConverter.setStrToDouble(static_cast<double>(_intConverter.getStrToInt()));
@@ -115,10 +113,8 @@ void ScalarConverter::convertInt(const std::string& str) {
 }
 
 void ScalarConverter::convertFloat(const std::string& str) {
-    double value = std::atof(str.c_str());
-    if (value > FLT_MAX || value < FLT_MIN)
-        return;
-    _floatConverter.setStrToFloat(static_cast<float>(value));
+    _floatConverter.checkConversion(str);
+    _floatConverter.setStrToFloat(static_cast<float>(std::atof(str.c_str())));
     _charConverter.setStrToChar(static_cast<char>(_floatConverter.getStrToFloat()));
     _intConverter.setStrToInt(static_cast<int>(_floatConverter.getStrToFloat()));
     _doubleConverter.setStrToDouble(static_cast<double>(_floatConverter.getStrToFloat()));
@@ -126,10 +122,8 @@ void ScalarConverter::convertFloat(const std::string& str) {
 }
 
 void ScalarConverter::convertDouble(const std::string& str) {
-    long double value = std::strtod(str.c_str(), NULL);
-    if (value > DBL_MAX || value < DBL_MIN)
-        return ;
-    _doubleConverter.setStrToDouble(static_cast<double>(value));
+    _doubleConverter.checkConversion(str);
+    _doubleConverter.setStrToDouble(static_cast<double>(std::strtod(str.c_str(), NULL)));
     _charConverter.setStrToChar(static_cast<char>(_doubleConverter.getStrToDouble()));
     _intConverter.setStrToInt(static_cast<int>(_doubleConverter.getStrToDouble()));
     _floatConverter.setStrToFloat(static_cast<float>(_doubleConverter.getStrToDouble()));

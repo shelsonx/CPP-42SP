@@ -1,7 +1,23 @@
 #include "Converter.hpp"
 
+Converter::Converter() {
+    this->isConvertible = true;
+}
+
 void CharConverter::update() {
-    std::cout << "char: " << this->_strToChar << std::endl;
+    if (this->isDisplayableChar(this->_strToChar))
+        std::cout << "char: " << this->_strToChar << std::endl;
+    else
+        std::cout << "char: Non displayable" << this->_strToChar << std::endl;
+}
+
+void CharConverter::checkConversion(const std::string& str) {
+    (void) str;
+    return;
+}
+
+bool CharConverter::isDisplayableChar(char c) {
+    return (c >= 32 && c <= 126);
 }
 
 char CharConverter::getStrToChar() const {
@@ -13,7 +29,18 @@ void CharConverter::setStrToChar(char c) {
 }
 
 void IntConverter::update() {
-    std::cout << "int: " << this->_strToInt << std::endl;
+    if (this->isConvertible)
+        std::cout << "int: " << this->_strToInt << std::endl;
+    else
+        std::cout << "int: impossible" << std::endl;
+}
+
+void IntConverter::checkConversion(const std::string& str) {
+    
+    long int value = std::atol(str.c_str());
+
+    if (value > INT_MAX || value < INT_MIN)
+        this->isConvertible = false;
 }
 
 int IntConverter::getStrToInt() const {
@@ -28,6 +55,12 @@ void FloatConverter::update() {
     std::cout << "float: " << this->_strToFloat << ".0f" << std::endl;
 }
 
+void FloatConverter::checkConversion(const std::string& str) {
+    double value = std::atof(str.c_str());
+    if (value > FLT_MAX || value < FLT_MIN)
+        this->isConvertible = false;
+}
+
 float FloatConverter::getStrToFloat() const {
     return this->_strToFloat;
 }
@@ -38,6 +71,12 @@ void FloatConverter::setStrToFloat(float f) {
 
 void DoubleConverter::update() {
     std::cout << "double: " << this->_strToDouble << ".0" << std::endl;
+}
+
+void DoubleConverter::checkConversion(const std::string& str) {
+    long double value = std::strtod(str.c_str(), NULL);
+    if (value > DBL_MAX || value < DBL_MIN)
+        this->isConvertible = false;
 }
 
 double DoubleConverter::getStrToDouble() const {

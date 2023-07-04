@@ -3,15 +3,25 @@
 #define CONVERTER_HPP
 
 #include <iostream>
+#include <cstdlib>
+#include <climits>
+#include <cfloat>
 
 class Converter {
     public:
+        Converter();
         virtual void update() = 0;
+        virtual void checkConversion(const std::string& str) = 0;
+    
+    protected:
+        bool isConvertible;
 };
 
 class CharConverter : public Converter {
     public:
         void update();
+        void checkConversion(const std::string& str);
+        bool isDisplayableChar(char c);
         char getStrToChar() const;
         void setStrToChar(char c);
     
@@ -22,6 +32,7 @@ class CharConverter : public Converter {
 class IntConverter : public Converter {
     public:
         void update();
+        void checkConversion(const std::string& str);
         int getStrToInt() const;
         void setStrToInt(int i);
     
@@ -32,6 +43,7 @@ class IntConverter : public Converter {
 class FloatConverter : public Converter {
     public:
         void update();
+        void checkConversion(const std::string& str);
         float getStrToFloat() const;
         void setStrToFloat(float f);
     
@@ -42,6 +54,7 @@ class FloatConverter : public Converter {
 class DoubleConverter : public Converter {
     public:
         void update();
+        void checkConversion(const std::string& str);
         double getStrToDouble() const;
         void setStrToDouble(double d);
     
