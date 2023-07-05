@@ -1,6 +1,6 @@
-NAME =  serializer
+NAME =  base
 
-SRC =  Serializer.cpp main.cpp
+SRC =  Base.cpp main.cpp
 OBJ_PATH		= ./objects/
 
 CPLUSPLUS = c++
@@ -27,9 +27,10 @@ fclean: clean
 re: fclean all
 
 run:
-	./serializer
+	./base
 
 leak:
 	valgrind --track-origins=yes --show-leak-kinds=all ./$(NAME)
+
 
 .PHONY: all clean fclean re leak run
