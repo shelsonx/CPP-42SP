@@ -33,7 +33,7 @@ Array<T>::Array(const unsigned int& n):_elements(new T[n]), _n(n) {
 }
 
 template<typename T>
-Array<T>::Array(const Array& other) {
+Array<T>::Array(const Array& other) : _elements(0), _n(0) {
     std::cout << "Copy Constructor Called" << std::endl;
     *this = other;
 }
