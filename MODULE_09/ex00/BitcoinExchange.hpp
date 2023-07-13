@@ -9,6 +9,7 @@
 #include <cstdlib>
 #include <algorithm>
 #include <list>
+#include <exception>
 
 struct input {
     std::string date;
@@ -22,9 +23,7 @@ class BitcoinExchange {
         BitcoinExchange& operator=(const BitcoinExchange& other);
         ~BitcoinExchange();
     
-        void showDataBase();
-        void showInputs();
-        void loadInput(std::string filename);
+        void showCalc(std::string filename);
 
     private:
         std::map<std::string, double> _database;
@@ -32,7 +31,21 @@ class BitcoinExchange {
         std::ifstream _filein;
 
         void openFile(std::string& filename);
+        void loadInput(std::string filename);
         void fileToDatabase(std::string filename);
+
+        void checkFinded(
+            std::map<std::string, double>::const_iterator& 
+            search,std::list<input>::iterator& it);
+        void checkNotFound(std::list<input>::iterator& it);
+        bool checkValue(double& value) const;
+        bool isValidDate(const std::string& date);
+        void checkInputs(
+            std::map<std::string, double>::const_iterator& search, 
+            std::list<input>::iterator& it);
+        void display(
+            std::map<std::string, double>::const_iterator& search, 
+            std::list<input>::iterator& it);
 };
 
 #endif

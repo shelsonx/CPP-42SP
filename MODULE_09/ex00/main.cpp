@@ -1,11 +1,16 @@
 #include "BitcoinExchange.hpp"
 
 int main(int argc, char **argv) {
-    (void) argc;
-    (void) argv;
-    BitcoinExchange btc;
-    btc.showDataBase();
-    std::cout << std::endl;
-    btc.loadInput("input.txt");
-    btc.showInputs();
+    if (argc != 2) {
+        std::cout << "could not open file." << std::endl;
+        return 1;
+    }
+    try {
+        BitcoinExchange btc;
+        btc.showCalc(argv[1]);
+    }
+    catch (std::exception& e) {
+        e.what();
+    }
+    return 0;
 }
