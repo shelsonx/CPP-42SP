@@ -14,6 +14,7 @@
 struct input {
     std::string date;
     double value;
+    bool validInput;
 };
 
 class BitcoinExchange {

@@ -47,14 +47,19 @@ void BitcoinExchange::loadInput(std::string filename) {
     this->openFile(filename);
     if (this->_filein.is_open()) {
         while (std::getline(this->_filein, buffer)) {
-            if (buffer.find("|") != std::string::npos)
+            if (buffer.find("|") != std::string::npos) {
                 in.date  = buffer.substr(0, buffer.find('|') -1);
-            else
+                in.validInput = true;
+                if (buffer[buffer.size() - 1] != '|' && buffer.size() > 2)
+                    value = buffer.substr(buffer.find("|") + 1, buffer.size());
+                else
+                    in.validInput = false;
+            }
+            else {
                 in.date = buffer;
-            if (buffer.find("|") != std::string::npos)
-                value = buffer.substr(buffer.find("|") + 2, buffer.size());
-            else
-                value = "0";
+                value = "";
+                in.validInput = false;
+            }
             in.value = std::strtod(value.c_str(), NULL);
             this->_inputs.push_back(in);
         }
@@ -100,6 +105,16 @@ bool BitcoinExchange::isValidDate(const std::string& date) {
  void BitcoinExchange::display(
         std::map<std::string, double>::const_iterator& search, 
         std::list<input>::iterator& it) {
+    if (!(*it).validInput) {
+        std::cout << "Error: bad input => " << (*it).date << std::endl;
+        return; 
+    }
+    if (!isValidDate((*it).date)) {
+        std::cout << "Error: Date is not valid  => " << (*it).date << std::endl;
+        return ;
+    }
+    if (!checkValue((*it).value))
+        return ;
     std::cout
         << (*it).date
         << " => " << (*it).value << " = "
@@ -110,22 +125,16 @@ bool BitcoinExchange::isValidDate(const std::string& date) {
 void BitcoinExchange::checkFinded(
     std::map<std::string, double>::const_iterator& search, 
     std::list<input>::iterator& it) {
-    if (checkValue((*it).value))
-        display(search, it);
+    display(search, it);
 }
 
 void BitcoinExchange::checkNotFound(std::list<input>::iterator& it) {
     std::map<std::string, double>::const_iterator search;
 
-    if (!isValidDate((*it).date))
-        std::cout << "Error: bad input => " << (*it).date << std::endl;
-    else {
-        search = this->_database.lower_bound((*it).date);
-        if (search != this->_database.begin())
-            search--;
-        if (checkValue((*it).value))
-            display(search, it);
-    }
+    search = this->_database.lower_bound((*it).date);
+    if (search != this->_database.begin())
+        search--;
+    display(search, it);
 }
 
 void BitcoinExchange::checkInputs(
