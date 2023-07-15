@@ -4,7 +4,7 @@ SRC = BitcoinExchange.cpp main.cpp
 OBJ_PATH		= ./objects/
 
 CPLUSPLUS = c++
-CPLUSPLUSFLAGS = -Wall -Wextra -Werror -std=c++98
+CPLUSPLUSFLAGS = -Wall -Wextra -Werror -std=c++98 -g
 
 $(OBJ_PATH)%.o: %.cpp
 				mkdir -p $(OBJ_PATH)

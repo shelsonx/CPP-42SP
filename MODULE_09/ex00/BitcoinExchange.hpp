@@ -14,7 +14,7 @@
 struct input {
     std::string date;
     double value;
-    bool validInput;
+    bool validFormat;
 };
 
 class BitcoinExchange {
@@ -44,6 +44,7 @@ class BitcoinExchange {
         void checkInputs(
             std::map<std::string, double>::const_iterator& search, 
             std::list<input>::iterator& it);
+        void checkFormat(input& in, const std::string& buffer);
         void display(
             std::map<std::string, double>::const_iterator& search, 
             std::list<input>::iterator& it);

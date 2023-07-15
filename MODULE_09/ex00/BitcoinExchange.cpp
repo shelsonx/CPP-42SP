@@ -39,6 +39,26 @@ void BitcoinExchange::fileToDatabase(std::string filename) {
     }
 }
 
+void BitcoinExchange::checkFormat(input& in, const std::string& buffer) {
+    size_t finded;
+    std::string leftInput;
+    std::string rightInput;
+
+    in.validFormat = true;
+    finded = buffer.find("|");
+    if (finded == std::string::npos) {
+        in.validFormat = false;
+    }
+    else {
+        leftInput = buffer.substr(0, finded);
+        rightInput = buffer.substr(finded);
+        if (leftInput[leftInput.size() - 1] != ' ') 
+            in.validFormat = false;
+        if (rightInput[1] != ' ' || rightInput.size() < 3)
+            in.validFormat = false;
+    }
+}
+
 void BitcoinExchange::loadInput(std::string filename) {
     std::string buffer;
     std::string value;
@@ -47,18 +67,14 @@ void BitcoinExchange::loadInput(std::string filename) {
     this->openFile(filename);
     if (this->_filein.is_open()) {
         while (std::getline(this->_filein, buffer)) {
-            if (buffer.find("|") != std::string::npos) {
-                in.date  = buffer.substr(0, buffer.find('|') -1);
-                in.validInput = true;
-                if (buffer[buffer.size() - 1] != '|' && buffer.size() > 2)
-                    value = buffer.substr(buffer.find("|") + 1, buffer.size());
-                else
-                    in.validInput = false;
+            checkFormat(in, buffer);
+            if (in.validFormat) {
+                in.date = buffer.substr(0, buffer.find("|") -1);
+                value = buffer.substr(buffer.find("|") + 2);
             }
             else {
                 in.date = buffer;
                 value = "";
-                in.validInput = false;
             }
             in.value = std::strtod(value.c_str(), NULL);
             this->_inputs.push_back(in);
@@ -83,12 +99,14 @@ bool BitcoinExchange::checkValue(double& value) const {
 
 bool BitcoinExchange::isValidDate(const std::string& date) {
     bool leapYear;
-    int year = std::atoi(date.substr(0, 4).c_str());
-    int month = std::atoi(date.substr(5, 2).c_str());
-    int day = std::atoi(date.substr(8, 2).c_str());
 
     if (date.size() != 10 || date[4] != '-' || date[7] != '-')
         return false;
+
+    int year = std::atoi(date.substr(0, 4).c_str());
+    int month = std::atoi(date.substr(5, 2).c_str());
+    int day = std::atoi(date.substr(8, 2).c_str());
+    
     if (year < 0 || month < 1 || month > 12 || day < 1 || day > 31)
         return false;
     
@@ -105,7 +123,7 @@ bool BitcoinExchange::isValidDate(const std::string& date) {
  void BitcoinExchange::display(
         std::map<std::string, double>::const_iterator& search, 
         std::list<input>::iterator& it) {
-    if (!(*it).validInput) {
+    if (!(*it).validFormat) {
         std::cout << "Error: bad input => " << (*it).date << std::endl;
         return; 
     }
