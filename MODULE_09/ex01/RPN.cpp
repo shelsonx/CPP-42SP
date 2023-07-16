@@ -84,10 +84,12 @@ void RPN::execute(std::string& inputs) {
         skipSpace(it);
         if (std::isdigit(*it))
             this->_stack.push(convertCharToInt(*it));
-        else if (this->_stack.size() == 2)
-            this->_stack.push(applyOperation(*it));
-        else
-            throw std::runtime_error("Error: Invalid Input.");
+        else {
+            if (this->_stack.size() >= 2)
+                this->_stack.push(applyOperation(*it));
+            else
+                throw std::runtime_error("Error: Invalid Input.");
+        }
     }
     std::cout << this->_stack.top() << std::endl;
 }
