@@ -14,6 +14,8 @@ class RPN {
         ~RPN();
 
         void execute(std::string& inputs);
+        int convertCharToInt(char& c);
+        int stoi( std::string& s );
 
     private:
         std::stack<int> _stack;
@@ -21,10 +23,8 @@ class RPN {
         void checkLessTen(std::string inputs);
         void checkValidChar(char& c);
 
-        int stoi( std::string& s );
         int applyOperation(char& op);
         void skipSpace(std::string::iterator& it);
-        int convertCharToInt(char& c);
 };
 
 #endif
