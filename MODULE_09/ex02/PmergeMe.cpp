@@ -49,14 +49,68 @@ void PmergeMe::setContainers(int size, char **argv) {
     }
 }
 
+void PmergeMe::addExtravalues(std::vector<int>& merged, std::vector<int>& subVector, size_t position) {
+    while (position < subVector.size())
+        merged.push_back(subVector[position++]);
+}
+
+void PmergeMe::insertionSort(std::vector<int>& arr, size_t left, size_t right) {
+    for (size_t i = left + 1; i <= right; i++) {
+        int current = arr[i];
+        size_t j = i - 1;
+        while (j >= left && arr[j] > current) {
+            arr[j + 1] = arr[j];
+            j--;
+        }
+        arr[j + 1] = current;
+    }
+}
+
+std::vector<int> PmergeMe::merge(std::vector<int>& leftArray, std::vector<int>& rightArray) {
+    std::vector<int> merged;
+    size_t indexLeft = 0, indexRight = 0;
+
+    while (indexLeft < leftArray.size() && indexRight < rightArray.size()) {
+        if (leftArray[indexLeft] <= rightArray[indexRight]) {
+            merged.push_back(leftArray[indexLeft]);
+            indexLeft++;
+        }
+        else {
+            merged.push_back(rightArray[indexRight]);
+            indexRight++;
+        }
+    }
+    addExtravalues(merged, leftArray, indexLeft);
+    addExtravalues(merged, rightArray, indexRight);
+
+    return merged;
+}
+
+std::vector<int> PmergeMe::mergeInsertSort(std::vector<int>& numbers) {
+    size_t size = numbers.size();
+   
+    if (size == 1)
+        return numbers;
+    
+    if (size == _vNumbers.size() / 2) {
+        insertionSort(numbers, 0, size -1);
+        return numbers;
+    }
+    std::vector<int> leftVector(numbers.begin(), numbers.begin() + size / 2);
+    std::vector<int> rightVector(numbers.begin() + size / 2, numbers.end());
+
+    leftVector = mergeInsertSort(leftVector);
+    rightVector = mergeInsertSort(rightVector);
+
+    return merge(leftVector, rightVector);
+}
+
 void PmergeMe::sort() {
-    //DEBUG
+    _vNumbers = mergeInsertSort(_vNumbers);
     displayRawNumbers(_vNumbers.begin(), _vNumbers.end());
-    displayRawNumbers(_dNumbers.begin(), _dNumbers.end());
 }
 
 void PmergeMe::sort(int size, char **argv) {
     setContainers(size, argv);
-    displayRawNumbers(_vNumbers.begin(), _vNumbers.end());
-    displayRawNumbers(_dNumbers.begin(), _dNumbers.end());
+    sort();
 }

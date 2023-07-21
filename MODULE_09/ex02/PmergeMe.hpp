@@ -30,6 +30,11 @@ class PmergeMe {
     private:
         std::vector<int> _vNumbers;
         std::deque<int> _dNumbers;
+
+        void insertionSort(std::vector<int>& arr, size_t left, size_t right);
+        std::vector<int> merge(std::vector<int>& leftArray, std::vector<int>& rightArray);
+        std::vector<int> mergeInsertSort(std::vector<int>& numbers);
+        void addExtravalues(std::vector<int>& merged, std::vector<int>& subVector, size_t start);
 };
 
 template <typename T>
