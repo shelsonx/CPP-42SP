@@ -31,13 +31,15 @@ class PmergeMe {
         std::vector<int> _vNumbers;
         std::deque<int> _dNumbers;
 
-        std::vector<std::pair<int, int> > splitPairs();
-        void sortSecondElement(std::vector<std::pair<int, int> >& pairs);
-        void splitLeftRight(const std::vector<std::pair<int, int> >& pairs, 
+        std::vector<std::pair<int, int> > splitPairsVector();
+        void sortSecondElementVector(std::vector<std::pair<int, int> >& pairs);
+        void splitLeftRightVector(const std::vector<std::pair<int, int> >& pairs, 
             std::vector<int>& left, 
             std::vector<int>& right);
-        void insertNumbers(std::vector<int>::iterator it_v, std::vector<int>::iterator it_left);
-        void insertionSort(std::vector<int>& left, std::vector<int>& right);
+        void insertNumbersVector(std::vector<int>::iterator it_left);
+        void insertionSortVector(std::vector<int>& left, std::vector<int>& right);
+
+        void removeExtra();
         
 };
 
