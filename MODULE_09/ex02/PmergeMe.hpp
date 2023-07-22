@@ -21,8 +21,10 @@ class PmergeMe {
         PmergeMe& operator=(const PmergeMe& other);
         ~PmergeMe();
 
+        void sort();
         void display();
         void sortVector();
+        void sortDeque();
         void setContainers(int size, char **argv);
         int stoi(std::string str);
         bool isValidInput(std::string str);
@@ -41,6 +43,15 @@ class PmergeMe {
         void insertNumbersVector(std::vector<int>::iterator it_left);
         void insertionSortVector(std::vector<int>& left, std::vector<int>& right);
         void removeExtraVector();
+
+        std::deque<std::pair<int, int> > splitPairsDeque();
+        void sortSecondElementDeque(std::deque<std::pair<int, int> >& pairs);
+        void splitLeftRightDeque(const std::deque<std::pair<int, int> >& pairs, 
+            std::deque<int>& left, 
+            std::deque<int>& right);
+        void insertNumbersDeque(std::deque<int>::iterator it_left);
+        void insertionSortDeque(std::deque<int>& left, std::deque<int>& right);
+        void removeExtraDeque();
         
 };
 
