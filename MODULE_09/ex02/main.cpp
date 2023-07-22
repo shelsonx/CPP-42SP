@@ -2,11 +2,8 @@
 
 int main(int argc, char **argv) {
     try {
-       /*  PmergeMe merge;
-        merge.sort(argc, argv); */
-
         PmergeMe merge(argc, argv);
-        merge.sort();
+        merge.display();
     }
     catch (std::exception& e) {
         std::cout << e.what() << std::endl;

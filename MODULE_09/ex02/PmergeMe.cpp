@@ -119,17 +119,31 @@ void PmergeMe::insertionSortVector(std::vector<int>& left, std::vector<int>& rig
     removeExtra();
 }
 
-void PmergeMe::sort() {
+void PmergeMe::display() {
+    clock_t start, end;
+    double elapsed;
+    
+    std::cout << "Before: ";
+    displayRawNumbers(_vNumbers.begin(), _vNumbers.end());
+    std::cout << "After:  ";
+    start = clock();
+    sortVector();
+    end = clock();
+    elapsed = (double) ((end - start) * 1000000) / CLOCKS_PER_SEC;
+    displayRawNumbers(_vNumbers.begin(), _vNumbers.end());
+    std::cout << "Time to process a range of " 
+        << _vNumbers.size() 
+        << " elements with std::vector<int> : "
+        << std::fixed << std::setprecision(5) << elapsed  << " us"
+        << std::endl;    
+}
+
+void PmergeMe::sortVector() {
     std::vector<std::pair<int, int> > pairs = splitPairsVector();
     std::vector<int> left, right;
 
     sortSecondElementVector(pairs);
     splitLeftRightVector(pairs, left, right);
     insertionSortVector(left, right);
-    displayRawNumbers(_vNumbers.begin(), _vNumbers.end());
 }
 
-void PmergeMe::sort(int size, char **argv) {
-    setContainers(size, argv);
-    sort();
-}

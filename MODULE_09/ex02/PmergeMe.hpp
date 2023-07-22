@@ -10,6 +10,8 @@
 #include <exception>
 #include <stdexcept>
 #include <utility>
+#include <ctime>
+#include <iomanip>
 
 class PmergeMe {
     public:
@@ -19,8 +21,8 @@ class PmergeMe {
         PmergeMe& operator=(const PmergeMe& other);
         ~PmergeMe();
 
-        void sort();
-        void sort(int size, char **argv);
+        void display();
+        void sortVector();
         void setContainers(int size, char **argv);
         int stoi(std::string str);
         bool isValidInput(std::string str);
