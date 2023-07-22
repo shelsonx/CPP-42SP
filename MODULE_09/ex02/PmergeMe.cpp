@@ -49,6 +49,11 @@ void PmergeMe::setContainers(int size, char **argv) {
     }
 }
 
+void PmergeMe::removeExtraVector() {
+    if (_vNumbers[0] < 0)
+        _vNumbers.erase(_vNumbers.begin());  
+}
+
 std::vector<std::pair<int, int> > PmergeMe::splitPairsVector() {
     std::vector<std::pair<int, int> > pairs;
 
@@ -103,11 +108,6 @@ void PmergeMe::insertNumbersVector(std::vector<int>::iterator it_left) {
     }
 }
 
-void PmergeMe::removeExtra() {
-    if (_vNumbers[0] < 0)
-        _vNumbers.erase(_vNumbers.begin());  
-}
-
 void PmergeMe::insertionSortVector(std::vector<int>& left, std::vector<int>& right)
 {
     std::vector<int>::iterator it_left, it_nums;
@@ -116,7 +116,7 @@ void PmergeMe::insertionSortVector(std::vector<int>& left, std::vector<int>& rig
     _vNumbers = right;
 	for (it_left = left.begin(); it_left < left.end(); it_left++)
 		insertNumbersVector(it_left);
-    removeExtra();
+    removeExtraVector();
 }
 
 void PmergeMe::display() {

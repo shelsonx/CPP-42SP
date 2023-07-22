@@ -40,8 +40,7 @@ class PmergeMe {
             std::vector<int>& right);
         void insertNumbersVector(std::vector<int>::iterator it_left);
         void insertionSortVector(std::vector<int>& left, std::vector<int>& right);
-
-        void removeExtra();
+        void removeExtraVector();
         
 };
 
