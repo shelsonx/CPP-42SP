@@ -9,7 +9,7 @@
 #include <algorithm>
 #include <exception>
 #include <stdexcept>
-
+#include <utility>
 
 class PmergeMe {
     public:
@@ -31,10 +31,14 @@ class PmergeMe {
         std::vector<int> _vNumbers;
         std::deque<int> _dNumbers;
 
-        void insertionSort(std::vector<int>& arr, size_t left, size_t right);
-        std::vector<int> merge(std::vector<int>& leftArray, std::vector<int>& rightArray);
-        std::vector<int> mergeInsertSort(std::vector<int>& numbers);
-        void addExtravalues(std::vector<int>& merged, std::vector<int>& subVector, size_t start);
+        std::vector<std::pair<int, int> > splitPairs();
+        void sortSecondElement(std::vector<std::pair<int, int> >& pairs);
+        void splitLeftRight(const std::vector<std::pair<int, int> >& pairs, 
+            std::vector<int>& left, 
+            std::vector<int>& right);
+        void insertNumbers(std::vector<int>::iterator it_v, std::vector<int>::iterator it_left);
+        void insertionSort(std::vector<int>& left, std::vector<int>& right);
+        
 };
 
 template <typename T>

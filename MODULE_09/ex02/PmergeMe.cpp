@@ -49,67 +49,90 @@ void PmergeMe::setContainers(int size, char **argv) {
     }
 }
 
-void PmergeMe::addExtravalues(std::vector<int>& merged, std::vector<int>& subVector, size_t position) {
-    while (position < subVector.size())
-        merged.push_back(subVector[position++]);
+std::vector<std::pair<int, int> > PmergeMe::splitPairs() {
+    std::vector<std::pair<int, int> > pairs;
+
+    for (size_t i = 0; i + 1 < _vNumbers.size(); i += 2) {
+        if (_vNumbers[i] > _vNumbers[i + 1]) {
+            pairs.push_back(std::make_pair(_vNumbers[i + 1], _vNumbers[i]));
+        } else {
+            pairs.push_back(std::make_pair(_vNumbers[i], _vNumbers[i + 1]));
+        }
+    }
+    if (_vNumbers.size() % 2 != 0) {
+        pairs.push_back(std::make_pair(_vNumbers.back(), -1));
+    }
+    return pairs;
 }
 
-void PmergeMe::insertionSort(std::vector<int>& arr, size_t left, size_t right) {
-    for (size_t i = left + 1; i <= right; i++) {
-        int current = arr[i];
-        size_t j = i - 1;
-        while (j >= left && arr[j] > current) {
-            arr[j + 1] = arr[j];
-            j--;
+void PmergeMe::sortSecondElement(std::vector<std::pair<int, int> >& pairs) {
+    size_t size = pairs.size();
+
+    for (size_t i = 0; i < size - 1; i++) {
+        for (size_t j = 0; j < size - i - 1; j++) {
+            if (pairs[j].second > pairs[j + 1].second) {
+                std::swap(pairs[j], pairs[j + 1]);
+            }
         }
-        arr[j + 1] = current;
+    }
+}
+
+ void PmergeMe::splitLeftRight(const std::vector<std::pair<int, int> >& pairs, 
+            std::vector<int>& left, 
+            std::vector<int>& right) {
+    for (size_t i = 0; i < pairs.size(); ++i) {
+        left.push_back(pairs[i].first);
+        right.push_back(pairs[i].second);
     }
 }
 
-std::vector<int> PmergeMe::merge(std::vector<int>& leftArray, std::vector<int>& rightArray) {
-    std::vector<int> merged;
-    size_t indexLeft = 0, indexRight = 0;
-
-    while (indexLeft < leftArray.size() && indexRight < rightArray.size()) {
-        if (leftArray[indexLeft] <= rightArray[indexRight]) {
-            merged.push_back(leftArray[indexLeft]);
-            indexLeft++;
+void PmergeMe::insertNumbers(std::vector<int>::iterator it_nums, std::vector<int>::iterator it_left) {
+    for (it_nums = _vNumbers.begin(); it_nums <= _vNumbers.end(); it_nums++)
+    {
+        if (*it_left <= *it_nums)
+        {
+            _vNumbers.insert(it_nums, *it_left);
+            break ;
         }
-        else {
-            merged.push_back(rightArray[indexRight]);
-            indexRight++;
+        else if (it_nums == _vNumbers.end()) {
+            _vNumbers.push_back(*it_left);
+            break;
         }
     }
-    addExtravalues(merged, leftArray, indexLeft);
-    addExtravalues(merged, rightArray, indexRight);
-
-    return merged;
 }
 
-std::vector<int> PmergeMe::mergeInsertSort(std::vector<int>& numbers) {
-    size_t size = numbers.size();
-   
-    if (size == 1)
-        return numbers;
-    
-    if (size == _vNumbers.size() / 2) {
-        insertionSort(numbers, 0, size -1);
-        return numbers;
+void PmergeMe::insertionSort(std::vector<int>& left, std::vector<int>& right)
+{
+    std::vector<int>::iterator it_left, it_nums;
+
+    _vNumbers.clear();
+    _vNumbers = right;
+	for (it_left = left.begin(); it_left < left.end(); it_left++)
+		insertNumbers(it_nums, it_left);
+    if (_vNumbers[0] < 0)
+        _vNumbers.erase(_vNumbers.begin());
+}
+
+void printPairs(const std::vector<std::pair<int, int> >& pairs) {
+    for (size_t i = 0; i < pairs.size(); i++) {
+        std::cout << "[" << pairs[i].first << " - " << pairs[i].second << "] ";
     }
-    std::vector<int> leftVector(numbers.begin(), numbers.begin() + size / 2);
-    std::vector<int> rightVector(numbers.begin() + size / 2, numbers.end());
-
-    leftVector = mergeInsertSort(leftVector);
-    rightVector = mergeInsertSort(rightVector);
-
-    return merge(leftVector, rightVector);
+    std::cout << std::endl;
 }
 
 void PmergeMe::sort() {
-    _vNumbers = mergeInsertSort(_vNumbers);
+    std::vector<std::pair<int, int> > pairs = splitPairs();
+    std::vector<int> left, right;
+    sortSecondElement(pairs);
+    splitLeftRight(pairs, left, right);
+    printPairs(pairs);
+
+    displayRawNumbers(left.begin(), left.end());
+    displayRawNumbers(right.begin(), right.end());
+    insertionSort(left, right);
     displayRawNumbers(_vNumbers.begin(), _vNumbers.end());
 }
-
+//10 2 4 5 7 3 9 0
 void PmergeMe::sort(int size, char **argv) {
     setContainers(size, argv);
     sort();
